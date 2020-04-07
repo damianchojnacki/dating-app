@@ -3,15 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@animated-burgers/burger-squeeze": "^1.1.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "animate.css": "^3.7.2",
+    "autoprefixer": "^9.7.4",
+    "classnames": "^2.2.6",
+    "firebase": "^7.13.2",
+    "node-sass": "^4.13.1",
+    "postcss-cli": "^7.1.0",
     "react": "^16.13.1",
+    "react-addons-update": "^15.6.2",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-google-button": "^0.7.1",
+    "react-icons": "^3.9.0",
+    "react-notify-toast": "^0.5.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "tailwindcss": "^1.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "build:style": "tailwind build src/css/index.css -o src/css/tailwind.css",
+    "start": "npm run build:style && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
