@@ -29,7 +29,7 @@ function App() {
                 {state.auth.user &&
                     <>
                         <div className="absolute top-0 right-0 p-4 z-30 text-4xl cursor-pointer">
-                            <img src={state.auth.user.photoURL} alt="User photo" className={`h-10 rounded-full animated fast ${toggleSidebar ? "hidden" : "flipInX"}`} onClick={() => setToggleSidebar(true)}/>
+                            <img src={state.auth.user.photoURL} alt="User icon" className={`h-10 rounded-full animated fast ${toggleSidebar ? "hidden" : "flipInX"}`} onClick={() => setToggleSidebar(true)}/>
                             <IoMdClose className={`animated fast ${toggleSidebar ? "flipInX" : "hidden"}`} onClick={() => setToggleSidebar(false)}/>
                         </div>
 

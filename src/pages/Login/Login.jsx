@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
-import {auth, googleAuthProvider} from "../../firebase";
-import GoogleButton from 'react-google-button';
+import {auth, facebookAuthProvider, googleAuthProvider} from "../../firebase";
 import {notify} from 'react-notify-toast';
 
 import {AppContext} from "../../AppContext";
 
 import './login.scss';
+import GoogleButton from "../../components/GoogleButton";
+import FacebookButton from "../../components/FacebookButton";
 
 function Login() {
     const {dispatch} = useContext(AppContext);
@@ -19,7 +20,10 @@ function Login() {
     return (
         <div className="login">
             <h1 className="text-6xl">Dating app</h1>
-            <GoogleButton type="light" onClick={() => handleLogin(googleAuthProvider)}>Login</GoogleButton>
+            <div className="flex flex-col">
+                <GoogleButton onClick={() => handleLogin(googleAuthProvider)}/>
+                <FacebookButton onClick={() => handleLogin(facebookAuthProvider)}/>
+            </div>
         </div>
     );
 }

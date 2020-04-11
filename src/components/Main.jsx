@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {Route, Switch} from "react-router-dom";
 import {AppContext} from "../AppContext";
-import Login from "./Login/Login";
+import Login from "../pages/Login/Login";
 
 function Main() {
     const {state} = useContext(AppContext);
