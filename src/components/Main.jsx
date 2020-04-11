@@ -1,7 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {Route, Switch} from "react-router-dom";
 import {AppContext} from "../AppContext";
 import Login from "../pages/Login/Login";
+import Homepage from "../pages/Homepage";
 
 function Main() {
     const {state} = useContext(AppContext);
@@ -10,13 +11,9 @@ function Main() {
         <Switch>
             {state.auth.user ?
                 <>
-                    <Route exact path="/">
-                        Homepage
-                    </Route>
+                    <Route exact path="/" component={Homepage}/>
 
-                    <Route path="/preferences">
-                        Preferences
-                    </Route>
+                    <Route path="/preferences">Preferences</Route>
 
                     <Route path="/profile">
                         Profile
@@ -27,7 +24,7 @@ function Main() {
                     </Route>
                 </>
             :
-                <Route exact path="/">
+                <Route exact path="*">
                     <Login/>
                 </Route>
             }

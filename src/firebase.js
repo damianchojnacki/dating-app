@@ -18,3 +18,9 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 export const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+
+export async function checkForPreferences(user){
+    const preferences = await firestore.collection('user_preferences').where('user_id', '==', user.uid).get();
+
+    return preferences.docs.length > 0;
+}

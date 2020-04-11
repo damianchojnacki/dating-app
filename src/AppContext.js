@@ -17,6 +17,7 @@ const reducer = (state, action) => {
                 auth: {
                     ...state.auth,
                     user: {
+                        uid: action.payload.uid,
                         name: action.payload.displayName,
                         email: action.payload.email,
                         photoURL: action.payload.photoURL,

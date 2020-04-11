@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {BrowserRouter} from "react-router-dom";
-import {FaUserCircle} from "react-icons/fa";
 import {IoMdClose} from "react-icons/all";
 
 import Main from "./Main";
