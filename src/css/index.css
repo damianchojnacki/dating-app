@@ -42,15 +42,22 @@
     filter: grayscale(50%);
 }
 
+/* animate.css extension */
+
+.animated.delay-05s {
+    -webkit-animation-delay: .5s;
+    animation-delay: .5s;
+}
+
+.animated.delay-025s {
+    -webkit-animation-delay: .25s;
+    animation-delay: .25s;
+}
+
 /* default styles*/
 
 body{
     color: #242424;
     font-family: 'Dosis', sans-serif;
+    overflow: hidden;
 }
-
-/* burger css */
-
-.burger .burger-lines,
-.burger .burger-lines:after,
-.burger .burger-lines:before { background-color: #242424 }

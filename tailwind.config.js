@@ -6,6 +6,11 @@ module.exports = {
       'lg': '1280px',
       'xl': '1600px',
     },
+    boxShadow: {
+      sm: '0 0 4px 0 rgba(0, 0, 0, .5)',
+      md: '0 0 10px 0 rgba(0, 0, 0, .66)',
+      lg: '0 0 20px 0 rgba(0, 0, 0, .5)',
+    },
     extend: {
       colors: {
         primary: {
@@ -22,6 +27,9 @@ module.exports = {
       },
       inset: {
         '1/2': '50%',
+        '1/4': '25%',
+        '1/8': '12.5%',
+        '1/16': '6.25%',
         'full': '100%',
       },
       height: {
