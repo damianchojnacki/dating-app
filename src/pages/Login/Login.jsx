@@ -9,12 +9,22 @@ import FacebookButton from "../../components/FacebookButton";
 function Login() {
     function handleLogin(provider) {
         auth.signInWithPopup(provider)
-            .catch(error => notify.show(error.message, 'error'));
+            .catch(error => {
+                if(error.credential.signInMethod === "facebook.com"){
+                    auth.signInWithPopup(googleAuthProvider).then(() =>{
+                        auth.currentUser.linkWithPopup(facebookAuthProvider);
+                    });
+                } else{
+                    auth.signInWithPopup(facebookAuthProvider).then(() =>{
+                        auth.currentUser.linkWithPopup(googleAuthProvider);
+                    });
+                }
+            });
     }
 
     return (
         <div className="login">
-            <h1 className="text-6xl">Dating app</h1>
+            <h1 className="text-6xl font-light">Dating app</h1>
             <div className="flex flex-col">
                 <GoogleButton onClick={() => handleLogin(googleAuthProvider)}/>
                 <FacebookButton onClick={() => handleLogin(facebookAuthProvider)}/>
