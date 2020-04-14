@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
 import {FaCheckCircle} from "react-icons/fa";
+import Layout from "../../components/Layout";
 
 function PreferencesCreator() {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(3);
     const [hide, setHide] = useState(false);
     const [loading, setLoading] = useState(false);
     const [finished, setFinished] = useState(false);
+    const [preferences, setPreferences] = useState({});
 
-    const validate = (credentials) => {
-        let check = true;
-
-
+    const validate = (preferences) => {
+        let check = false;
 
         return check;
     };
@@ -35,9 +35,9 @@ function PreferencesCreator() {
             case 1:
                 return true;
             case 2:
-                return true;
+                return ["man", "women"].includes(preferences.gender);
             case 3:
-                return true;
+                return false;
             case 4:
                 return true;
             case 6:
@@ -77,33 +77,52 @@ function PreferencesCreator() {
         }
     };
 
+    useEffect(() => {
+        setTimeout(() => nextStep(), 500);
+    }, [preferences.gender]);
+
     const steps = [
         <div onKeyDown={handleKeyDown}>
             <h1 className="mb-4">
-                Uzupełnij preferencje
+                Poprosimy cię teraz o podanie kilku niezbędnych informacji.
             </h1>
-            <button onClick={nextStep}>
+            <button onClick={nextStep} type="button" className="w-full py-4 bg-primary-700 text-white">
                 OK
             </button>
         </div>,
         <div onKeyDown={handleKeyDown}>
-            <h2 className="h1">
-                Krok 1
+            <h2 className="mb-8">
+                Wybierz swoją płeć:
             </h2>
 
-            <button onClick={nextStep} className="float-right">
-                Dalej
-            </button>
+            <div className="flex justify-between">
+                <img src="/images/women.png" className={`max-w-1/3 animate ${preferences.gender === "man" && "grayscale"}`} onClick={() => setPreferences({...preferences, gender: "women"})}/>
+                <img src="/images/man.png" className={`max-w-1/3 animate ${preferences.gender === "women" && "grayscale"}`} onClick={() => setPreferences({...preferences, gender: "man"})}/>
+            </div>
+        </div>,
+        <div onKeyDown={handleKeyDown}>
+            <h2 className="mb-8">
+                Wybierz swój wzrost oraz wagę:
+            </h2>
+
+            <div className="flex justify-between">
+                <button onClick={previousStep} type="button" className="w-1/3 py-4 bg-primary-700 text-white">
+                    Wróć
+                </button>
+                <button onClick={nextStep} type="button" className="w-1/3 py-4 bg-primary-700 text-white">
+                    Dalej
+                </button>
+            </div>
         </div>,
         <div onKeyDown={handleKeyDown}>
             <h2 className="h1">
                 Krok 2
             </h2>
 
-            <button onClick={previousStep}>
+            <button onClick={previousStep} type="button">
                Wróć
             </button>
-            <button onClick={nextStep} className="float-right">
+            <button onClick={nextStep} type="button">
                 Dalej
             </button>
         </div>,
@@ -119,10 +138,13 @@ function PreferencesCreator() {
         "animated": true,
         "fadeOut": hide,
         "fadeIn": !hide,
+        "px-6": true,
+        "w-full": true,
+        "text-center": true
     });
 
     return (
-        <div>
+        <Layout>
             {loading ? finished ?
                 <div className="flex justify-center">
                     <FaCheckCircle size="6x" className="animated bounceIn text-success text-6xl"/>
@@ -137,7 +159,7 @@ function PreferencesCreator() {
                     {displayStep()}
                 </form>
             }
-        </div>
+        </Layout>
     )
 }
 

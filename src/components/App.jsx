@@ -1,38 +1,67 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import Main from "./Main";
-import Sidebar from "./Sidebar";
-import Footer from "./Footer";
-import Loading from "./Loading/Loading";
-import {auth} from "../firebase";
+import {auth, checkForPreferences} from "../firebase";
 import {AppContext} from "../AppContext";
 
 import 'animate.css/animate.css';
+import Homepage from "../pages/Homepage";
+import PreferencesEditor from "../pages/PreferencesEditor/PreferencesEditor";
+import PreferencesCreator from "../pages/PreferencesCreator/PreferencesCreator";
+import Login from "../pages/Login/Login";
+import Loading from "./Loading/Loading";
+import Friends from "../pages/Friends";
 
 function App() {
     const {state, dispatch} = useContext(AppContext);
+    const [preferencesExists, setPreferencesExists] = useState(false);
 
     useEffect(() => {
         auth.onAuthStateChanged(user => user && dispatch({type: "login", payload: user}));
     }, [dispatch]);
 
+
+    useEffect(() => {
+        state.auth.user && (async function(){
+            const exists = await checkForPreferences(state.auth.user);
+
+            setPreferencesExists(exists);
+        })();
+    }, [state]);
+
     return (
         <BrowserRouter>
             <Loading/>
-            <main className="min-h-screen bg-gray-100">
-                <span className="absolute p-6 text-gray-500 text-sm">alpha release</span>
 
-                <Main />
-
-                {state.auth.user &&
+            <Switch>
+                {state.auth.user ?
                     <>
-                        <Sidebar/>
+                        <Route exact path="/" component={Homepage}/>
 
-                        <Footer/>
+                        <Route path="/preferences">
+                            {preferencesExists ?
+                                <PreferencesEditor/>
+                            :
+                                <PreferencesCreator/>
+                            }
+                        </Route>
+
+                        <Route path="/friends" component={Friends}/>
+
+                        <Route path="/profile">
+                            Profile
+                        </Route>
+
+                        <Route path="/premium">
+                            Premium
+                        </Route>
                     </>
+                    :
+                    <Route exact path="*">
+                        <Login/>
+                    </Route>
                 }
-            </main>
+            </Switch>
         </BrowserRouter>
     );
 }

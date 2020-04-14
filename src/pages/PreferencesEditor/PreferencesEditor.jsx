@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
+import Layout from "../../components/Layout";
 
 function PreferencesEditor() {
 
     return (
-        <div>
+        <Layout>
             Editor
-        </div>
+        </Layout>
     )
 }
 

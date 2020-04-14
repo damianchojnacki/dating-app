@@ -5,6 +5,7 @@ import {notify} from 'react-notify-toast';
 import './login.scss';
 import GoogleButton from "../../components/GoogleButton";
 import FacebookButton from "../../components/FacebookButton";
+import Layout from "../../components/Layout";
 
 function Login() {
     function handleLogin(provider) {
@@ -23,13 +24,15 @@ function Login() {
     }
 
     return (
-        <div className="login">
-            <h1 className="text-6xl font-light">Dating app</h1>
-            <div className="flex flex-col">
-                <GoogleButton onClick={() => handleLogin(googleAuthProvider)}/>
-                <FacebookButton onClick={() => handleLogin(facebookAuthProvider)}/>
+        <Layout>
+            <div className="login">
+                <h1 className="text-6xl font-light">Dating app</h1>
+                <div className="flex flex-col">
+                    <GoogleButton onClick={() => handleLogin(googleAuthProvider)}/>
+                    <FacebookButton onClick={() => handleLogin(facebookAuthProvider)}/>
+                </div>
             </div>
-        </div>
+        </Layout>
     );
 }
 

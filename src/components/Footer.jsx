@@ -1,20 +1,15 @@
 import React from 'react';
-import 'animate.css';
-import {Link} from "react-router-dom";
 import {FaUsers, FaSearch, FaHome} from "react-icons/fa";
+
+import 'animate.css';
+import FooterLink from "./FooterLink";
 
 function Footer() {
     return (
-        <div className="absolute bottom-0 w-full flex justify-around bg-white text-xl transform translate-y-5" style={{boxShadow: "0 -5px 10px -5px #ccc"}}>
-            <Link to="/" className="transform -translate-y-6 bg-white p-4 rounded-full" style={{boxShadow: "0 -5px 10px -7px #666"}}>
-                <FaHome/>
-            </Link>
-            <Link to="/friends" className="transform -translate-y-6 bg-white p-4 rounded-full" style={{boxShadow: "0 -5px 10px -7px #666"}}>
-                <FaUsers/>
-            </Link>
-            <Link to="/search" className="transform -translate-y-6 bg-white p-4 rounded-full" style={{boxShadow: "0 -5px 10px -7px #666"}}>
-                <FaSearch/>
-            </Link>
+        <div className="absolute bottom-0 w-full flex justify-around bg-white text-xl transform translate-y-3" style={{boxShadow: "0 -5px 10px -5px #ccc"}}>
+            <FooterLink link="/" Icon={FaHome}/>
+            <FooterLink link="/friends" Icon={FaUsers}/>
+            <FooterLink link="/search" Icon={FaSearch}/>
         </div>
     );
 }

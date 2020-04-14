@@ -7,8 +7,11 @@ function Loading() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setTimeout(() => setLoading(false), 1000)
+        const timer = setTimeout(() => setLoading(false), 1000);
+
+        return () => clearTimeout(timer);
     }, []);
+
     return (
         <div className="fixed w-screen h-screen bg-white flex justify-center items-center z-50 animated fadeOut delay-05s" style={{display: !loading && "none"}}>
             <div className="loader--circle"/>
