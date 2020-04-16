@@ -33,3 +33,16 @@
     opacity: 0;
   }
 }
+
+input[type="range"].height{
+  &::-webkit-slider-thumb {
+    width: 1rem;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 1rem;
+    cursor: pointer;
+    background: #FFF;
+    box-shadow: -405px 0 0 400px #605E5C;
+    border-radius: 50%;
+  }
+}
